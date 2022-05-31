@@ -1,22 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- <template id="listing"> -->
-        <!--   <ul> -->
-        <!--     <li t-foreach="objects" t-as="object"> -->
-        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
-        <!--         <t t-esc="object.display_name"/> -->
-        <!--       </a> -->
-        <!--     </li> -->
-        <!--   </ul> -->
-        <!-- </template> -->
-        <!-- <template id="object"> -->
-        <!--   <h1><t t-esc="object.display_name"/></h1> -->
-        <!--   <dl> -->
-        <!--     <t t-foreach="object._fields" t-as="field"> -->
-        <!--       <dt><t t-esc="field"/></dt> -->
-        <!--       <dd><t t-esc="object[field]"/></dd> -->
-        <!--     </t> -->
-        <!--   </dl> -->
-        <!-- </template> -->
+        <template id="method_repair_equipos.report_repairorder" name="template_name" inherit_id="repair.report_repairorder">
+            <xpath expr="//div[@class='row mt32 mb32']" position="after">
+            <div id="Vehicle" class="row mt32 mb32">
+                <div t-if="o.vehicle_id.license_plate" class="col-3 bm-2">
+                    <strong>Patente:</strong>
+                    <p t-field="o.vehicle_id.license_plate" class="m-0"/>                    
+                </div>                
+                <div t-if="o.vehicle_id.model_id" class="col-3 bm-2">
+                    <strong>Modelo:</strong>
+                    <p t-field="o.vehicle_id.model_id" class="m-0"/>                    
+                </div>                
+                <div t-if="o.vehicle_id.vin_sn" class="col-3 bm-2">
+                    <strong>N° Chasis:</strong>
+                    <p t-field="o.vehicle_id.vin_sn" class="m-0"/>                    
+                </div>                
+                <div t-if="o.vehicle_id.odometer" class="col-3 bm-2">
+                    <strong>Kilometros:</strong>
+                    <p t-field="o.vehicle_id.odometer" class="m-0"/>                    
+                </div>   
+            </div>
+            <div id="Vehicle_2" class="row mt32 mb32">             
+                <div t-if="o.vehicle_id.color" class="col-3 bm-2">
+                    <strong>Color:</strong>
+                    <p t-field="o.vehicle_id.color" class="m-0"/>                    
+                </div>                
+                <div t-if="o.vehicle_id.model_year" class="col-3 bm-2">
+                    <strong>Año:</strong>
+                    <p t-field="o.vehicle_id.model_year" class="m-0"/>                    
+                </div>                                
+            </div>
+            </xpath>
+        </template>
     </data>
 </odoo>
