@@ -1,5 +1,19 @@
 <odoo>
   <data>
+    <!-- repair.view_repair_order_tree -->
+    <record id="method_repair_equipos.view_repair_order_tree" model="ir.ui.view">
+      <field name="name">method.repair.equipos.view.repair.order.tree</field>
+      <field name="model">repair.order</field>
+      <field name="inherit_id" ref="repair.view_repair_order_tree"/>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="vehicle_id" />
+        <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
+      </xpath>    
+        
+      </field>
+    </record>
+
 
     <!-- model.name inherit form view -->
     <record id="method_repair_equipos.view_repair_order_form" model="ir.ui.view">
@@ -9,6 +23,7 @@
       <field name="arch" type="xml">
       <xpath expr="//field[@name='partner_id']" position="after">
         <field name="vehicle_id" />
+        <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
       </xpath>    
         
       </field>
