@@ -23,9 +23,13 @@
       <field name="arch" type="xml">
         <xpath expr="//field[@name='partner_id']" position="after">
           <field name="vehicle_id" />
-          <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
-          <field name="picking_id" />        
+          <field name="kilometraje" attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
+          <field name="picking_id" attrs="{'invisible': [('move_id', '=', False)]}"/>        
         </xpath>    
+        <xpath expr="//field[@name='invoice_method']" position="after">
+          <field name="picking_id" attrs="{'invisible': [('move_id', '=', False)]}"/>        
+        </xpath>    
+
       </field>
     </record>
 
