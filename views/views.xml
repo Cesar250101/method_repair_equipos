@@ -8,7 +8,7 @@
       <field name="arch" type="xml">
       <xpath expr="//field[@name='partner_id']" position="after">
         <field name="vehicle_id" />
-        <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
+        <field name="kilometraje"  attrs="{'invisible':[('vehicle_id', '=', False)],'required':[('vehicle_id','=',True)]}"/>
       </xpath>    
         
       </field>
@@ -21,13 +21,27 @@
       <field name="model">repair.order</field>
       <field name="inherit_id" ref="repair.view_repair_order_form"/>
       <field name="arch" type="xml">
-      <xpath expr="//field[@name='partner_id']" position="after">
-        <field name="vehicle_id" />
-        <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
+        <xpath expr="//field[@name='partner_id']" position="after">
+          <field name="vehicle_id" />
+          <field name="kilometraje"  attrs="{'invisible': [('vehicle_id', '=', False)]}"/>
+          <field name="picking_id" />        
+        </xpath>    
+      </field>
+    </record>
+
+<!-- stock.view_picking_type_form -->
+    <record id="method_repair_equipos.view_picking_type_form" model="ir.ui.view">
+      <field name="name">method.repair.equipos.view.picking.type.form</field>
+      <field name="model">stock.picking.type</field>
+      <field name="inherit_id" ref="stock.view_picking_type_form"/>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='barcode']" position="after">
+        <field name="es_reparacion" />
       </xpath>    
         
       </field>
     </record>
+
 
   </data>
 </odoo>
