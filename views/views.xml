@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <!-- repair.view_repair_order_tree -->
-    <record id="method_repair_equipos.view_repair_order_tree" model="ir.ui.view">
+    <!-- <record id="method_repair_equipos.view_repair_order_tree" model="ir.ui.view">
       <field name="name">method.repair.equipos.view.repair.order.tree</field>
       <field name="model">repair.order</field>
       <field name="inherit_id" ref="repair.view_repair_order_tree"/>
@@ -12,7 +12,7 @@
       </xpath>    
         
       </field>
-    </record>
+    </record> -->
 
 
     <!-- model.name inherit form view -->
