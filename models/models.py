@@ -78,7 +78,7 @@ class OrdenReparación(models.Model):
                     })
                     moves |= move
                     operation.write({'move_id': move.id, 'state': 'done'})
-                move = Move.create({
+                vals={
                     'name': repair.name,
                     'picking_id':pick.id,
                     'product_id': repair.product_id.id,
@@ -99,11 +99,15 @@ class OrdenReparación(models.Model):
                                             'location_dest_id': repair.location_id.id,})],
                     'repair_id': repair.id,
                     'origin': repair.name,
-                })
+                }
+                move = Move.create(vals)
                 consumed_lines = moves.mapped('move_line_ids')
                 produced_lines = move.move_line_ids
                 moves |= move
-                moves._action_done()
+                try:
+                    moves._action_done()
+                except:
+                    pass
                 produced_lines.write({'consume_line_ids': [(6, 0, consumed_lines.ids)]})
                 res[repair.id] = move.id
                 
@@ -117,3 +121,11 @@ class OrdenReparación(models.Model):
     @api.onchange('es_reparacion')
     def _onchange_(self):
         self.code='outgoing'
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    def _action_done(self):
+        res = super(StockMove, self)._action_done()
+        self.mapped('purchase_line_id').sudo()._update_received_qty()
+        return res
